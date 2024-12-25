@@ -18,9 +18,9 @@ namespace WebApplication1.Controllers
             //Linq method
             if (!_context.Products.Any())
             {
-                _context.Products.Add(new Product() { Name = "Kalem 1", Price = 100, Stock = 100, Color = "Red", Height = 10, Width = 20 });
-                _context.Products.Add(new Product() { Name = "Kalem 2", Price = 100, Stock = 200, Color = "Red", Height = 10, Width = 20 });
-                _context.Products.Add(new Product() { Name = "Kalem 3", Price = 100, Stock = 300, Color = "Red", Height = 10, Width = 20 });
+                _context.Products.Add(new Product() { Name = "Kalem 1", Price = 100, Stock = 100, Color = "Red"});
+                _context.Products.Add(new Product() { Name = "Kalem 2", Price = 100, Stock = 200, Color = "Red"});
+                _context.Products.Add(new Product() { Name = "Kalem 3", Price = 100, Stock = 300, Color = "Red"});
 
                 _context.SaveChanges();
             }
