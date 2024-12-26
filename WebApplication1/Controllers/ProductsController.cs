@@ -16,21 +16,19 @@ namespace WebApplication1.Controllers
 
             _context = context;
             //Linq method
-            if (!_context.Products.Any())
-            {
-                _context.Products.Add(new Product() { Name = "Kalem 1", Price = 100, Stock = 100, Color = "Red"});
-                _context.Products.Add(new Product() { Name = "Kalem 2", Price = 100, Stock = 200, Color = "Red"});
-                _context.Products.Add(new Product() { Name = "Kalem 3", Price = 100, Stock = 300, Color = "Red"});
+            //if (!_context.Products.Any())
+            //{
+            //    _context.Products.Add(new Product() { Name = "Kalem 1", Price = 100, Stock = 100, Color = "Red" });
+            //    _context.Products.Add(new Product() { Name = "Kalem 2", Price = 100, Stock = 200, Color = "Red" });
+            //    _context.Products.Add(new Product() { Name = "Kalem 3", Price = 100, Stock = 300, Color = "Red" });
 
-                _context.SaveChanges();
-            }
+            //    _context.SaveChanges();
+            //}
 
         }
         public IActionResult Index()
         {
             var products = _context.Products.ToList();
-
-            var product = _context.Products.First();
 
             return View(products);
         }
@@ -44,15 +42,53 @@ namespace WebApplication1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpGet]
 
         public IActionResult Add()
         {
             return View();
         }
+        // Sağlıklı olan HttpPost üzerinden almak.(Model Bindin yapmak istediğimizde post)
+        [HttpPost]
+        public IActionResult Add(Product newProduct)
+        {
+            // Request Header-Body 
 
+            //1.Yöntem
+
+            //var name = HttpContext.Request.Form["Name"].ToString();
+            //var price = decimal.Parse(HttpContext.Request.Form["Price"].ToString());
+            //var stock = int.Parse(HttpContext.Request.Form["Stock"].ToString());
+            //var color = HttpContext.Request.Form["Color"].ToString();
+
+            //2.Yöntem
+            //Product newProduct = new Product() { Name = Name , Price = Price , Stock = Stock , Color = Color } ;
+
+
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+            TempData["status"] = "Ürün başarıyla eklendi.";
+
+            return RedirectToAction("Index");
+
+        }
+        [HttpGet]
         public IActionResult Update(int id)
         {
-            return View();
+            var product = _context.Products.Find(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Product updateProduct , int productId)
+        {
+            updateProduct.Id = productId;
+
+            _context.Products.Update(updateProduct);
+            _context.SaveChanges();
+            TempData["status"] = "Ürün başarıyla güncellendi.";
+            return RedirectToAction("Index");
+
         }
     }
 }
