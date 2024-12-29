@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        // Sağlıklı olan HttpPost üzerinden almak.(Model Bindin yapmak istediğimizde post)
+        // Sağlıklı olan HttpPost üzerinden almak.(Model Bindin yapmak istediğimizde post.)
         [HttpPost]
         public IActionResult Add(Product newProduct)
         {
