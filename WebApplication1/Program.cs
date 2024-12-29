@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Helpers;
 using WebApplication1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 });
 
+//Bir singelton nesne ekleyecez . Herhangi bir classýn constractýrýnda veya metodunda IHelper isminde bir interface görürsek
+//gidip bundan Helper ismindeki sýnýftan bir nesne üret.
+
+// builder.Services.AddSingleton<IHelper,Helper>();
+
+builder.Services.AddScoped<IHelper, Helper>();
 
 var app = builder.Build();
 

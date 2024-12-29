@@ -8,11 +8,9 @@
 
 <h1>Ürün güncelleme</h1>
 
-<form asp-controller="Products" asp-action="Update" method="post">
+<form asp-controller="Products" asp-action="Update" asp-route-productId="@Model.Id" asp-route-type="type1" method="post">
 
     <label>Ürün İsmi :</label>
-
-    <input type="hidden" asp-for="Id" />
 
     <input type="text" asp-for="Name" />
     <br />

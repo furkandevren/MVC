@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WebApplication1.Helpers;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+      
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            
         }
 
         public IActionResult Index()
@@ -20,6 +23,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Privacy()
         {
+            
             return View();
         }
 
